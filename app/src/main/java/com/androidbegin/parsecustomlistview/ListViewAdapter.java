@@ -16,15 +16,15 @@ public class ListViewAdapter extends BaseAdapter {
 	// Declare Variables
 	Context mContext;
 	LayoutInflater inflater;
-	private List<DataDoa> doalist = null;
-	private ArrayList<DataDoa> arraylist;
+	private List<Doa> doalist = null;
+	private ArrayList<Doa> arraylist;
 
 	public ListViewAdapter(Context context,
-			List<DataDoa> doalist) {
+			List<Doa> doalist) {
 		mContext = context;
 		this.doalist = doalist;
 		inflater = LayoutInflater.from(mContext);
-		this.arraylist = new ArrayList<DataDoa>();
+		this.arraylist = new ArrayList<Doa>();
 		this.arraylist.addAll(doalist);
 	}
 
@@ -38,7 +38,7 @@ public class ListViewAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public DataDoa getItem(int position) {
+	public Doa getItem(int position) {
 		return doalist.get(position);
 	}
 
@@ -53,7 +53,7 @@ public class ListViewAdapter extends BaseAdapter {
 			holder = new ViewHolder();
 			view = inflater.inflate(R.layout.listview_item, null);
 			// Locate the TextViews in listview_item.xml
-			holder.title = (TextView) view.findViewById(R.id.titel);
+			holder.title = (TextView) view.findViewById(R.id.title);
 			view.setTag(holder);
 		} else {
 			holder = (ViewHolder) view.getTag();
@@ -66,15 +66,14 @@ public class ListViewAdapter extends BaseAdapter {
 
 			@Override
 			public void onClick(View arg0) {
-				// Send single item click data to SingleItemView Class
-				Intent intent = new Intent(mContext, SingleItemView.class);
+				// Send single item click data to SingleItemActivity Class
+				Intent intent = new Intent(mContext, SingleItemActivity.class);
 
 				intent.putExtra("title",(doalist.get(position).getTitle()));
-				intent.putExtra("illustration", (doalist.get(position).getIllus()));
-				intent.putExtra("spelling",(doalist.get(position).getSpelling()));
-				intent.putExtra("objectId",(doalist.get(position).getObj()));
+				intent.putExtra("illustration", (doalist.get(position).getIllustration()));
 				intent.putExtra("arabic", (doalist.get(position).getArabic()));
-				intent.putExtra("trans",(doalist.get(position).getTrans()));
+				intent.putExtra("spelling",(doalist.get(position).getSpelling()));
+				intent.putExtra("translation",(doalist.get(position).getTranslation()));
 
 				mContext.startActivity(intent);
 			}

@@ -19,15 +19,17 @@ public class MainActivity extends Activity {
 	List<ParseObject> ob;
 	ProgressDialog mProgressDialog;
 	ListViewAdapter adapter;
-	private List<DataDoa> worldpopulationlist = null;
+	private List<Doa> doaList = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// Get the view from listview_main.xml
-		setContentView(R.layout.listview_main);
+		// Get the view from activity_main.xml
+		setContentView(R.layout.activity_main);
 		// Execute RemoteDataTask AsyncTask
-		new RemoteDataTask().execute();
+		//new RemoteDataTask().execute();
+
+
 	}
 
 	// RemoteDataTask AsyncTask
@@ -37,36 +39,32 @@ public class MainActivity extends Activity {
 			super.onPreExecute();
 			// Create a progressdialog
 			mProgressDialog = new ProgressDialog(MainActivity.this);
-			// Set progressdialog title
 			mProgressDialog.setTitle("Parse.com Custom ListView Tutorial");
-			// Set progressdialog message
 			mProgressDialog.setMessage("Loading...");
 			mProgressDialog.setIndeterminate(false);
-			// Show progressdialog
 			mProgressDialog.show();
 		}
 
 		@Override
 		protected Void doInBackground(Void... params) {
 			// Create the array
-			worldpopulationlist = new ArrayList<DataDoa>();
+			doaList = new ArrayList<Doa>();
 			try {
 				// Locate the class table named "Country" in Parse.com
 				ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(
 						"Doa");
 				// Locate the column named "ranknum" in Parse.com and order list
 				// by ascending
-				query.orderByAscending("title");
+				//query.orderByAscending("title");
 				ob = query.find();
-				for (ParseObject country : ob) {
-					DataDoa map = new DataDoa();
-					map.setTitle((String) country.get("title"));
-					map.setIllus((String) country.get("illustration"));
-					map.setSpelling((String) country.get("spelling"));
-					map.setObj((String) country.get("objectId"));
-					map.setArabic((String) country.get("arabic"));
-					map.setTrans((String) country.get("translation"));
-					worldpopulationlist.add(map);
+				for (ParseObject doa : ob) {
+					Doa map = new Doa();
+					map.setTitle((String) doa.get("title"));
+					map.setIllustration((String) doa.get("illustration"));
+					map.setArabic((String) doa.get("arabic"));
+					map.setSpelling((String) doa.get("spelling"));
+					map.setTranslation((String) doa.get("translation"));
+					doaList.add(map);
 				}
 			} catch (ParseException e) {
 				Log.e("Error", e.getMessage());
@@ -77,11 +75,11 @@ public class MainActivity extends Activity {
 
 		@Override
 		protected void onPostExecute(Void result) {
-			// Locate the listview in listview_main.xml
+			// Locate the listview in activity_main.xml
 			listview = (ListView) findViewById(R.id.listview);
 			// Pass the results into ListViewAdapter.java
 			adapter = new ListViewAdapter(MainActivity.this,
-					worldpopulationlist);
+					doaList);
 			// Binds the Adapter to the ListView
 			listview.setAdapter(adapter);
 			// Close the progressdialog

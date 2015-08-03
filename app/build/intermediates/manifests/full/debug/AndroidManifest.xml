@@ -24,7 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.androidbegin.parsecustomlistview.SingleItemView" >
+        <activity android:name="com.androidbegin.parsecustomlistview.SingleItemActivity" >
         </activity>
     </application>
 
