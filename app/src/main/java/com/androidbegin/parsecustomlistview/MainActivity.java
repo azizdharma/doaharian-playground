@@ -27,7 +27,9 @@ public class MainActivity extends Activity {
 		// Get the view from activity_main.xml
 		setContentView(R.layout.activity_main);
 		// Execute RemoteDataTask AsyncTask
-		new RemoteDataTask().execute();
+		//new RemoteDataTask().execute();
+
+
 	}
 
 	// RemoteDataTask AsyncTask
@@ -37,12 +39,9 @@ public class MainActivity extends Activity {
 			super.onPreExecute();
 			// Create a progressdialog
 			mProgressDialog = new ProgressDialog(MainActivity.this);
-			// Set progressdialog title
 			mProgressDialog.setTitle("Parse.com Custom ListView Tutorial");
-			// Set progressdialog message
 			mProgressDialog.setMessage("Loading...");
 			mProgressDialog.setIndeterminate(false);
-			// Show progressdialog
 			mProgressDialog.show();
 		}
 
@@ -52,7 +51,8 @@ public class MainActivity extends Activity {
 			doaList = new ArrayList<Doa>();
 			try {
 				// Locate the class table named "Country" in Parse.com
-				ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Doa");
+				ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(
+						"Doa");
 				// Locate the column named "ranknum" in Parse.com and order list
 				// by ascending
 				//query.orderByAscending("title");
