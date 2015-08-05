@@ -1,49 +1,53 @@
 package com.androidbegin.parsecustomlistview;
 
-public class Doa {
-	private String title;
-	private String illustration;
-	private String arabic;
-	private String spelling;
-	private String translation;
+import com.parse.ParseClassName;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
+@ParseClassName("Doa")
+public class Doa extends ParseObject {
 
 	public String getTitle() {
-		return title;
+		return getString("title");
 	}
 
 	public void setTitle(String title) {
-		this.title = title;
+		put("title", title);
 	}
 
 	public String getIllustration() {
-		return illustration;
+		return getString("illustration");
 	}
 
 	public void setIllustration(String illustration) {
-		this.illustration = illustration;
+		put("illustration", illustration);
 	}
 
 	public String getArabic() {
-		return arabic;
+		return getString("arabic");
 	}
 
 	public void setArabic(String arabic) {
-		this.arabic = arabic;
+		put("arabic", arabic);
 	}
 
 	public String getSpelling() {
-		return spelling;
+		return getString("spelling");
 	}
 
 	public void setSpelling(String spelling) {
-		this.spelling = spelling;
+		put("spelling", spelling);
 	}
 
 	public String getTranslation() {
-		return translation;
+		return getString("translation");
 	}
 
 	public void setTranslation(String translation) {
-		this.translation = translation;
+		put("translation", translation);
+	}
+
+	public static ParseQuery<Doa> getQuery() {
+		return ParseQuery.getQuery(Doa.class);
 	}
 }
