@@ -5,10 +5,17 @@
     android:id="@+id/listview">
 
     <TextView
+        android:id="@+id/objectId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="aaa"
+        android:clickable="true"/>
+
+    <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="aaa"
-        android:clickable="true" />
+        android:clickable="true"/>
 
 </RelativeLayout>

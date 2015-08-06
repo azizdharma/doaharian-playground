@@ -7,6 +7,14 @@ import com.parse.ParseQuery;
 @ParseClassName("Doa")
 public class Doa extends ParseObject {
 
+	public String getId() {
+		return getString("objectId");
+	}
+
+	public void setId(String id) {
+		put("objectId", id);
+	}
+
 	public String getTitle() {
 		return getString("title");
 	}

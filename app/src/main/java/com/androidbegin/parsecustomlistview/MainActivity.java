@@ -36,7 +36,7 @@ public class MainActivity extends Activity {
 
         // Set up the views
         doaListView = (ListView) findViewById(R.id.listview);
-        
+            
         //Set up Parse Query to use in the adapter
         ParseQueryAdapter.QueryFactory<Doa> factory = new ParseQueryAdapter.QueryFactory<Doa>() {
             public ParseQuery<Doa> create(){
@@ -53,13 +53,6 @@ public class MainActivity extends Activity {
         // Attach the query adapter to the view
         doaListView = (ListView) findViewById(R.id.listview);
         doaListView.setAdapter(doalistAdapter);
-
-        doaListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Doa doa = doalistAdapter.getItem(position);
-            }
-        });
 	}
 
     private void loadFromParse() {
@@ -101,19 +94,23 @@ public class MainActivity extends Activity {
             if (view == null) {
                 view = inflater.inflate(R.layout.listview_item, parent, false);
                 holder = new ViewHolder();
+                holder.doaId = (TextView) view.findViewById(R.id.objectId);
                 holder.doaTitle = (TextView) view.findViewById(R.id.title);
                 view.setTag(holder);
             } else {
                 holder = (ViewHolder) view.getTag();
             }
 
+            TextView doaId = holder.doaId;
             TextView doaTitle = holder.doaTitle;
+            doaId.setText(doa.getId());
             doaTitle.setText(doa.getTitle());
             return view;
         }
     }
 
     private static class ViewHolder {
+        TextView doaId;
         TextView doaTitle;
     }
 }
