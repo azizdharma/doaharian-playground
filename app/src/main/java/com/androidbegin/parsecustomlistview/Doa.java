@@ -8,11 +8,11 @@ import com.parse.ParseQuery;
 public class Doa extends ParseObject {
 
 	public String getId() {
-		return getString("objectId");
+		return getString("numb");
 	}
 
 	public void setId(String id) {
-		put("objectId", id);
+		put("numb", id);
 	}
 
 	public String getTitle() {

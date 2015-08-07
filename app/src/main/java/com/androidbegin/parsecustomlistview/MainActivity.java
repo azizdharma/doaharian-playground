@@ -36,7 +36,7 @@ public class MainActivity extends Activity {
 
         // Set up the views
         doaListView = (ListView) findViewById(R.id.listview);
-            
+
         //Set up Parse Query to use in the adapter
         ParseQueryAdapter.QueryFactory<Doa> factory = new ParseQueryAdapter.QueryFactory<Doa>() {
             public ParseQuery<Doa> create(){
